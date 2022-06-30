@@ -1,0 +1,45 @@
+a {
+    text-decoration: none;
+}
+
+#titulo {
+    margin: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#catalogo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.pCerrarSesion {
+    margin-top: 20px;
+    font-size: 1.3rem;
+}
+
+.seccionCerrarSesion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.changuitoProductosTitulo {
+    text-transform: uppercase;
+    font-size: 2rem;
+    text-align: center;
+}
+
+button {
+    background-color: #c1e1f7;
+}
+
+.botonesProductos {
+    margin: 20px;
+}
+
+#canasta {
+    background-color: azure;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
