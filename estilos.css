@@ -41,5 +41,10 @@ button {
 #canasta {
     background-color: azure;
     display: grid;
+    grid-template-rows: 1fr 0.5fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#canastaTotal {
+    grid-row: 2/3;
 }
