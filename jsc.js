@@ -89,18 +89,19 @@ const verTodoElCatalogo = (productos) => {
         productosAnteriores.remove();
     }
     for (const catalogo of productos) {
+        const { id, imagen, nombre, precio } = catalogo
         const etiqueta = document.createElement(`div`);
         etiqueta.className = `catalogoProductos`
         etiqueta.innerHTML = `
-    <img src="${catalogo?.imagen}" alt="${catalogo?.nombre}" height="250" width="250" class="catalogoProductosImg">
+    <img src="${imagen}" alt="${nombre}" height="250" width="250" class="catalogoProductosImg">
     <div class="catalogoProductosDescripcion>
-    <h1 class="catalogoProductosTitulo"> ${catalogo?.nombre}</h1>
-    <p class="catalogoProductosPrecio"> $ ${catalogo?.precio} </p>
+    <h1 class="catalogoProductosTitulo"> ${nombre}</h1>
+    <p class="catalogoProductosPrecio"> $ ${precio} </p>
     </div>
-    <div><button class="btn btn-secondary" id="agregar_${catalogo?.id}">Agregar</button> </div>
+    <div><button class="btn btn-secondary" id="agregar_${id}">Agregar</button> </div>
     `
         catalogoDeProductos.append(etiqueta)
-        botonAgregarProductos = document.getElementById(`agregar_${catalogo?.id}`)
+        botonAgregarProductos = document.getElementById(`agregar_${id}`)
         botonAgregarProductos.addEventListener(`click`, (e) => {
             e.preventDefault();
             insertarProductosAChanguito(catalogo)
@@ -135,16 +136,17 @@ insertarProductosAChanguito = (producto) => {
 //Funcion para agregar productos al html
 const agregarProductoAlChanguitoEnHtml = (productoAAgregar) => {
     const etiquetaChango = document.createElement(`div`);
-    etiquetaChango.classList.add(`productosDelChanguito_${productoAAgregar?.id}`);
-    etiquetaChango.id = `${productoAAgregar?.id}`;
+    const { id, imagen, nombre, precio } = productoAAgregar
+    etiquetaChango.classList.add(`productosDelChanguito_${id}`);
+    etiquetaChango.id = `${id}`;
     etiquetaChango.innerHTML = `
-<img src="${productoAAgregar?.imagen}" alt="${productoAAgregar?.nombre}" height="250" width="250" class="changuitoProductoImagen">
+<img src="${imagen}" alt="${nombre}" height="250" width="250" class="changuitoProductoImagen">
 <div class="changuitoDescripcionProducto">
-<h1>Producto: ${productoAAgregar?.nombre}</h1>
-<p>Precio por Unidad: ${productoAAgregar?.precio}</p>
-<p id="cantidad_${productoAAgregar?.id}">Cantidad agregada: 1 </p>
+<h1>Producto: ${nombre}</h1>
+<p>Precio por Unidad: ${precio}</p>
+<p id="cantidad_${id}">Cantidad agregada: 1 </p>
 </div>
-<div><button id="elminiar_${productoAAgregar?.id}">Elminiar</button> </div>`
+<div><button id="elminiar_${id}">Elminiar</button> </div>`
     canastaDeCompras.append(etiquetaChango)
 }
 
@@ -153,8 +155,8 @@ const agregarProductoAlChanguitoEnHtml = (productoAAgregar) => {
 //Funcion para el boton para eliminar productos.
 botonParaEliminarProductosDeChanguito = (productoAEliminar) => {
     for (productosEnChango of changuito) {
-        const eliminarUnProducto = document.getElementById(`elminiar_${productoAEliminar.id}`)
-        const cantidadProducto = document.getElementById(`cantidad_${productoAEliminar.id}`)
+        const eliminarUnProducto = document.getElementById(`elminiar_${productoAEliminar?.id}`)
+        const cantidadProducto = document.getElementById(`cantidad_${productoAEliminar?.id}`)
         let index = saberI(changuito, productoAEliminar)
         eliminarUnProducto.onclick = () => {
             if (changuito[index].cantidad > 1) {
