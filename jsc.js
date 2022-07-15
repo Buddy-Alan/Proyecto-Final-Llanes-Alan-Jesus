@@ -1,3 +1,34 @@
+simularTraerDatosDeBD = async() => {
+    try {
+        const respuest = await fetch(`./productos.json`);
+        const respuestasProductos = await respuest.json();
+        const productosDeJson = respuestasProductos;
+        let productoNuevo
+        for (productosAJs of productosDeJson.sinAlchol) {
+            const { tipo, id, nombre, precio, imagen } = productosAJs
+            productoNuevo = [new Producto({ tipo, id, nombre, precio, imagen })];
+            productosSinAlcohol = productosSinAlcohol.concat(productoNuevo)
+        };
+        for (productosAJs of productosDeJson.conAlchol) {
+            const { tipo, id, nombre, precio, imagen } = productosAJs
+            productoNuevo = [new Producto({ tipo, id, nombre, precio, imagen })];
+            productosConAlcohol = productosConAlcohol.concat(productoNuevo);
+
+        };
+        misProductos = productosConAlcohol.concat(productosSinAlcohol);
+    } catch {
+        console.log(`Error en la funcion SimularTRaerDatosDeBD`)
+    } finally {
+
+    }
+}
+
+sumarIva = () => {
+    for (const productos of misProductos) {
+        productos.sumaIva();
+    }
+}
+
 reiniciarPagina = () => {
     location.reload();
 }
