@@ -40,21 +40,33 @@ class ProductosEnCanasta {
     }
 }
 
-// Array de Objetos
-let productosSinAlcohol = [
-    new Producto({ tipo: "SA", id: "SA_1", nombre: "Sprite 2,25 Lts", precio: 300, imagen: `./imagenes/Sprite 2,25 Lts.jpg` }),
-    new Producto({ tipo: "SA", id: "SA_2", nombre: "Coca 2,25 Lts", precio: 350, imagen: `./imagenes/Coca 2,25 Lts.jpg` })
-];
+simularTraerDatosDeBD = async() => {
+    try {
+        const respuest = await fetch(`./productos.json`);
+        const respuestasProductos = await respuest.json();
+        const productosDeJson = respuestasProductos;
+        let productoNuevo
+        for (productosAJs of productosDeJson.sinAlchol) {
+            const { tipo, id, nombre, precio, imagen } = productosAJs
+            productoNuevo = [new Producto({ tipo, id, nombre, precio, imagen })];
+            productosSinAlcohol = productosSinAlcohol.concat(productoNuevo)
+        };
+        for (productosAJs of productosDeJson.conAlchol) {
+            const { tipo, id, nombre, precio, imagen } = productosAJs
+            productoNuevo = [new Producto({ tipo, id, nombre, precio, imagen })];
+            productosConAlcohol = productosConAlcohol.concat(productoNuevo);
 
-// Array de Objetos
-let productosConAlcohol = [
-    new Producto({ tipo: "CA", id: "CA_1", nombre: "Fernet 750cc", precio: 915, imagen: `./imagenes/Fernet 750cc.jpg` }),
-    new Producto({ tipo: "CA", id: "CA_2", nombre: "Gancia 950ml", precio: 495, imagen: `./imagenes/Gancia 950ml.jpg` })
-];
+        };
+        misProductos = productosConAlcohol.concat(productosSinAlcohol);
+    } catch {
+        console.log(`Error en la funcion SimularTRaerDatosDeBD`)
+    } finally {
 
+    }
+}
 
-// Array Concatenado entre productos con y sin alcohol
-misProductos = productosSinAlcohol.concat(productosConAlcohol);
-for (const productos of misProductos) {
-    productos.sumaIva();
+sumarIva = () => {
+    for (const productos of misProductos) {
+        productos.sumaIva();
+    }
 }

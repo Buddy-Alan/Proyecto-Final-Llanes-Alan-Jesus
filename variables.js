@@ -2,6 +2,8 @@ let billeteraVirtual = Number(localStorage.getItem(`billeteraVirtual`));
 // Array de Changuito vacio.
 const changuito = [];
 // Array para Sumar y unir los arrays.
+let productosSinAlcohol = [];
+let productosConAlcohol = [];
 let misProductos = [];
 let nombreUsuarioTienda = localStorage.getItem(`nombreUsuarioTienda`)
 let apellidoUsuarioTienda = localStorage.getItem(`apellidoUsuarioTienda`)

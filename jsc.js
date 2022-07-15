@@ -56,7 +56,8 @@ formularioInput.onsubmit = (e) => {
 }
 
 //Oculta automaticamente el forumlaro si existe nombreUsuarioTienda y apellidoUsuarioTienda
-!!nombreUsuarioTienda && !!apellidoUsuarioTienda ? ocultarFormulario() : console.log("Si no Existen esas Variables no Funciona");
+if (!!nombreUsuarioTienda && !!apellidoUsuarioTienda)
+    ocultarFormulario();
 
 formDinero.onsubmit = (e) => {
     e.preventDefault();
@@ -157,28 +158,21 @@ botonParaEliminarProductosDeChanguito = (productoAEliminar) => {
     for (productosEnChango of changuito) {
         const eliminarUnProducto = document.getElementById(`elminiar_${productoAEliminar?.id}`)
         const cantidadProducto = document.getElementById(`cantidad_${productoAEliminar?.id}`)
+        let i
         let index = saberI(changuito, productoAEliminar)
         eliminarUnProducto.onclick = () => {
             if (changuito[index].cantidad > 1) {
                 changuito[index].cambiarCantidad(`restar`);
                 cantidadProducto.innerHTML = `Cantidad agregada: ${changuito[index].cantidad} `
                 localStorage.setItem(`changuitoParaStorage`, JSON.stringify(changuito));
-            }
-            // else if (changuito.length > 1) {
-            //     const listadoDeProductos = document.querySelectorAll(`.productosDelChanguito_${changuito[index- 1].id}`)
-            //     for (productoASacar of listadoDeProductos)
-            //         productoASacar.remove();
-            //     console.log(listadoDeProductos)
-            //     console.log(changuito[index].cantidad)
-            //     changuito[index].cambiarCantidad(`restar`);
-            // }
-            else {
+            } else {
                 {
                     const listadoDeProductos = document.querySelectorAll(`.productosDelChanguito_${changuito[index].id}`)
                     for (productoASacar of listadoDeProductos)
                         productoASacar.remove();
                     changuito[index].cambiarCantidad(`restar`);
                     localStorage.setItem(`changuitoParaStorage`, JSON.stringify(changuito));
+                    i = -1
                 }
             }
             //Actualiza el total a pagar en el changuito
@@ -239,9 +233,7 @@ pagarTodoElChanguito.addEventListener(`click`, () => {
                     }
                 }).then((result) => {
                     /* Read more about handling dismissals below */
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        console.log('I was closed by the timer')
-                    }
+                    if (result.dismiss === Swal.DismissReason.timer) {}
                 })
             } else {
                 Swal.fire({
@@ -253,5 +245,7 @@ pagarTodoElChanguito.addEventListener(`click`, () => {
     })
 })
 
+simularTraerDatosDeBD();
+setTimeout(sumarIva, 50);
 agregarPrecioDelChanguito();
 verificarDatosDeStorage();

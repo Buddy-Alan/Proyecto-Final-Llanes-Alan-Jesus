@@ -1,0 +1,32 @@
+{
+    "sinAlchol": [{
+            "tipo": "SA",
+            "id": "SA_1",
+            "nombre": "Sprite 2,25 Lts",
+            "precio": 300,
+            "imagen": "./imagenes/Sprite 2,25 Lts.jpg"
+        },
+        {
+            "tipo": "SA",
+            "id": "SA_2",
+            "nombre": "Coca 2,25 Lts",
+            "precio": 350,
+            "imagen": "./imagenes/Coca 2,25 Lts.jpg"
+        }
+    ],
+    "conAlchol": [{
+            "tipo": "CA",
+            "id": "CA_1",
+            "nombre": "Fernet 750cc",
+            "precio": 915,
+            "imagen": "./imagenes/Fernet 750cc.jpg"
+        },
+        {
+            "tipo": "CA",
+            "id": "CA_2",
+            "nombre": "Gancia 950ml",
+            "precio": 495,
+            "imagen": "./imagenes/Gancia 950ml.jpg"
+        }
+    ]
+}
