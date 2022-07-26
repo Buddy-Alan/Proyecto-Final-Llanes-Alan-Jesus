@@ -17,12 +17,13 @@ simularTraerDatosDeBD = async() => {
         };
         misProductos = productosConAlcohol.concat(productosSinAlcohol);
     } catch {
-        console.log(`Error en la funcion SimularTRaerDatosDeBD`)
+
     } finally {
 
     }
 }
 
+//suma el iba a los productos de la clase productos
 sumarIva = () => {
     for (const productos of misProductos) {
         productos.sumaIva();
@@ -33,15 +34,17 @@ reiniciarPagina = () => {
     location.reload();
 }
 
+//Borra los datos del loclastorage
 borrarDatos = () => {
     localStorage.clear();
     setTimeout(reiniciarPagina, 1850);
 }
+
 agregarPrecioDelChanguito = () => {
     parrafoCanastaTotal.innerHTML = `El Precio del Changuito Total Es: $${totalChanguito()}`;
 }
 
-//funcion para ocultar el formulario
+//funcion para ocultar el formulario de Nombre y Apellido
 ocultarFormulario = () => {
     formularioInput.style.display = `none`;
     titulo.innerHTML = `<h3>¡Bienvenido <b>${nombreUsuarioTienda} ${apellidoUsuarioTienda}</b> a nuestra tienda online de Bebidas !</h3>
@@ -72,6 +75,7 @@ ocultarFormulario = () => {
     }
 }
 
+//Utilizado para enviar el formulario de registros del usuario.
 formularioInput.onsubmit = (e) => {
     e.preventDefault();
     nombreUsuarioTienda = nombreInput.value;
@@ -90,6 +94,7 @@ formularioInput.onsubmit = (e) => {
 if (!!nombreUsuarioTienda && !!apellidoUsuarioTienda)
     ocultarFormulario();
 
+//Utilizado para ingresar dinero.
 formDinero.onsubmit = (e) => {
     e.preventDefault();
     billeteraVirtual += Number(dineroInput.value)
@@ -108,7 +113,7 @@ const totalChanguito = () => {
 }
 
 
-
+//Botones para ver los productos
 verTodo.addEventListener(`click`, () => { verTodoElCatalogo(misProductos) });
 verProduCA.addEventListener(`click`, () => { verTodoElCatalogo(productosConAlcohol) });
 verProduSA.onclick = () => { verTodoElCatalogo(productosSinAlcohol) };
@@ -224,6 +229,7 @@ const verificarDatosDeStorage = () => {
     }
 }
 
+//Boton para pagar todos los productos en el changuito.
 pagarTodoElChanguito.addEventListener(`click`, () => {
     Swal.fire({
         title: 'Deseas Realizar la compra?',
